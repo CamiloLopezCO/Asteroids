@@ -1,1 +1,8 @@
 node_modules/
+
+# Ignore virtual environments
+venv/
+
+# Ignore compiled Python files 
+__pycache__/
+

@@ -39,16 +39,25 @@ def main():
 		screen.fill("black") #Fill the screen with black
 		updatable.update(dt) #Update all updatables
 		
-		#Check for collisions
+		#Bullet-Asteroid collision detection
+		for asteroid in asteroids:
+			for shot in shots:
+				if shot.collides_with(asteroid):
+					asteroid.split()
+					shot.kill()
+
+		#Player-Asteroid collision detection
 		for asteroid in asteroids:
 			if player.collides_with(asteroid):
 				print("Game over!")
 				pygame.quit()
 				exit()
 
-		#Draw all drawables
+		#Draw everything
+		screen.fill("black")
 		for sprite in drawable:
 			sprite.draw(screen)
+		pygame.display.flip()
 
 		pygame.display.flip() #Refresh the display
 		dt = clock.tick(60) / 1000 #Limit to 60 FPS and calculate delta time
